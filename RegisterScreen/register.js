@@ -1,18 +1,46 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
   // State'ler: Kullanıcıdan alınacak veriler
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   // Kayıt işlemi (şu anda sadece bir console log yazdırıyor)
-  const handleRegister = () => {
-    console.log('Email:', email);
-    console.log('Username:', username);
-    console.log('Password:', password);
+ 
+  const handleRegister = async () => {
+    try {
+      const response = await fetch('http://10.0.2.2:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("✅ Kayıt başarılı!");
+        navigation.navigate('Mainscreen'); // ya da giriş ekranının ismi neyse
+      } else {
+        alert("❌ " + data.message);
+      }
+  
+    } catch (error) {
+      alert("❌ Sunucu hatası: " + error.message);
+    }
+    
+
   };
+
+  
 
   return (
     <View style={styles.container}>
@@ -39,7 +67,7 @@ export default function Register() {
       {/* Şifre Input */}
       <TextInput
         style={styles.input}
-        placeholder="Şifre"
+        placeholder="Password"
         placeholderTextColor="#666"
         value={password}
         onChangeText={(text) => setPassword(text)}
@@ -47,7 +75,7 @@ export default function Register() {
       />
 
       {/* Kayıt Ol Button */}
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TouchableOpacity style={styles.button} onPress={handleRegister} >
         <Text style={styles.buttonText}>Kayıt Ol</Text>
       </TouchableOpacity>
 

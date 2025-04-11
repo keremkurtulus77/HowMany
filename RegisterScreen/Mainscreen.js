@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,KeyboardAvoidingView,useState, } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 export default function Main() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -20,6 +23,8 @@ export default function Main() {
           style={styles.input} 
           placeholder="Kullanıcı Adı" 
           placeholderTextColor="#666"
+          value={username}
+          onChangeText={setUsername}
         />
 
         <TextInput 
@@ -27,6 +32,8 @@ export default function Main() {
           placeholder="Şifre" 
           placeholderTextColor="#666"
           secureTextEntry={true}  
+          value={password}
+          onChangeText={setPassword}
         />
 
         <TouchableOpacity style={styles.button}>
@@ -56,12 +63,12 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: 'absolute',
-    top: 40,  // Burada yazıyı biraz aşağı kaydırıyoruz
-    alignItems: 'center',  // Yatayda ortalamak için
+    top: 40,  
+    alignItems: 'center',  
     width: '100%',
   },
   logo: {
-    fontSize: 30,  // Yazının boyutunu büyütebilirsiniz
+    fontSize: 30,  
     fontWeight: 'bold',
     color: "#000",
   },
