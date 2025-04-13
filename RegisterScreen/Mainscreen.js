@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,KeyboardAvoidingView,useState, } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 export default function Main() {
@@ -11,7 +12,7 @@ export default function Main() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      
+
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>How Much</Text>
       </View>
@@ -19,37 +20,37 @@ export default function Main() {
       <View style={styles.boxContainer}>
         <Text style={styles.title}>Giriş Yap</Text>
 
-        <TextInput 
-          style={styles.input} 
-          placeholder="Kullanıcı Adı" 
+        <TextInput
+          style={styles.input}
+          placeholder="Kullanıcı Adı"
           placeholderTextColor="#666"
           value={username}
           onChangeText={setUsername}
         />
 
-        <TextInput 
-          style={styles.input} 
-          placeholder="Şifre" 
+        <TextInput
+          style={styles.input}
+          placeholder="Şifre"
           placeholderTextColor="#666"
-          secureTextEntry={true}  
+          secureTextEntry={true}
           value={password}
           onChangeText={setPassword}
         />
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ObjectDetectorScreen")}>
           <Text style={styles.buttonText}>Giriş Yap</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("register")}> 
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("register")}>
           <Text style={styles.buttonText}>Kayıt Ol</Text>
         </TouchableOpacity>
       </View>
       <KeyboardAvoidingView style={styles.kvkcontainer}>
         <Text style={styles.kvk}>
-            By clicking continue, you agree to our Terms of Service and Privacy Policy.
+          By clicking continue, you agree to our Terms of Service and Privacy Policy.
         </Text>
       </KeyboardAvoidingView>
-    
+
     </View>
   );
 }
@@ -57,18 +58,18 @@ export default function Main() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',  
-    alignItems: 'center',  
-    backgroundColor: '#f0f0f0',  
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
   },
   logoContainer: {
     position: 'absolute',
-    top: 40,  
-    alignItems: 'center',  
+    top: 40,
+    alignItems: 'center',
     width: '100%',
   },
   logo: {
-    fontSize: 30,  
+    fontSize: 30,
     fontWeight: 'bold',
     color: "#000",
   },
@@ -77,14 +78,14 @@ const styles = StyleSheet.create({
     height: 400,
     backgroundColor: '#808080',
     borderRadius: 10,
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5, 
+    elevation: 5,
   },
   title: {
     fontSize: 22,
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 45,
-    backgroundColor: "#C0C0C0", 
+    backgroundColor: "#C0C0C0",
     borderRadius: 10,
     paddingHorizontal: 15,
     fontSize: 15,
@@ -116,12 +117,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
-  kvk:{
+  kvk: {
     fontSize: 15,
     fontWeight: 'bold',
     color: '#000',
   },
-  kvkcontainer:{
+  kvkcontainer: {
     position: 'absolute',
     bottom: 140,
     alignItems: 'center',

@@ -10,7 +10,7 @@ export default function Register() {
   const navigation = useNavigation();
 
   // Kayıt işlemi (şu anda sadece bir console log yazdırıyor)
- 
+
   const handleRegister = async () => {
     try {
       const response = await fetch('http://10.0.2.2:3000/register', {
@@ -23,24 +23,24 @@ export default function Register() {
           password
         })
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert("✅ Kayıt başarılı!");
         navigation.navigate('Mainscreen'); // ya da giriş ekranının ismi neyse
       } else {
         alert("❌ " + data.message);
       }
-  
+
     } catch (error) {
       alert("❌ Sunucu hatası: " + error.message);
     }
-    
+
 
   };
 
-  
+
 
   return (
     <View style={styles.container}>
